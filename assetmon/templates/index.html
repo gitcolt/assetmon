@@ -1,0 +1,24 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+    <form method='POST' action='/api/add_domain'>
+        {{ add_domain_form.domain(placeholder='domain.xyz') }}
+        {{ add_domain_form.submit }}
+    </form>
+
+    <form method='POST' action='/api/remove_domain'>
+        <ul>
+        {% for domain in all_domains %}
+            <li>
+            {{ domain.domain }}
+            {{ remove_domain_form.domain(value=domain.domain) }}
+            {{ remove_domain_form.submit }}
+            </li>
+        {% endfor %}
+        </ul>
+    </form>
+
+    <form action='/api/find_new_subdomains'>
+        <input type='submit' value='Find subdomains'/>
+    </form>
+{% endblock %}
